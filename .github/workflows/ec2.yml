@@ -32,7 +32,7 @@ jobs:
           script: |
             cd /home/ec2-user/dice
             
-            git pull origin deployment_project
+            git pull origin 
             
             sudo systemctl restart diceapp
             
