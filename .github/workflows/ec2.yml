@@ -1,1 +1,38 @@
 name: EC2 Deployment
+
+on:
+  push:
+    branches:
+      - deployment_project
+    paths:
+      - '.github/workflows/ec2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          ref: 'deployment_project'
+
+      - name: SSH into EC2 and run deployment script
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_KEY }}
+          port: '22'
+          script: |
+            cd /home/ec2-user/dice
+            
+            git pull origin deployment_project
+            
+            sudo systemctl restart diceapp
+            
+            sudo systemctl status diceapp --no-pager -l
