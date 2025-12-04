@@ -2,10 +2,10 @@ name: Lambda Deployment
 
 on:
   workflow_run:
-    workflows: ["test"]
-    types:
-      - completed
+    workflows: ["Test"]
+    types: [completed]
   workflow_dispatch: 
+
 
 jobs:   
   deploy-lambda:
@@ -33,5 +33,8 @@ jobs:
 
       - name: Deploy Lambda function
         run: ./resources/deploy_lambda.sh
+
+
+
 
         
