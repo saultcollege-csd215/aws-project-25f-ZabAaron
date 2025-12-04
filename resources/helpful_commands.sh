@@ -70,6 +70,10 @@ aws dynamodb create-table --table-name $name --attribute-definitions $attr1 $att
 
 # EC2 instances
 aws ec2 run-instances --image-id $ami_image_id --count 1 --instance-type t2.nano --key-name $key_name --iam-instance-profile Name=$instance_profile_name --security-group-ids $flasksgid --subnet-id $pubsubnetid --associate-public-ip-address --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=csd215-flask-instance}]' --user-data file://$path_to_user_data_script
+aws ec2 run-instances --image-id $ami-0fa3fe0fa7920f68e --count 1 --instance-type t2.nano --key-name $key_name --iam-instance-profile Name=$instance_profile_name --security-group-ids $flasksgid --subnet-id $pubsubnetid --associate-public-ip-address --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=csd215-flask-instance}]' --user-data file://$path_to_user_data_script
+
+
+
 aws ec2 stop-instances --instance-ids $id
 aws ec2 stop-instances --instance-ids $id --hibernate
 aws ec2 terminate-instances --instance-ids $id

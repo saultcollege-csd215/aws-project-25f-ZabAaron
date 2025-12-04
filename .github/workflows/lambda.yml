@@ -2,32 +2,23 @@ name: Lambda Deployment
 
 on:
   workflow_run:
-    workflows: ["Test"]  # Make sure this matches EXACTLY the name in GitHub UI
+    workflows: ["Test"]
     types: [completed]
-    branches: ["deployment_project"]
+    branches: [deployment_project]
   workflow_dispatch: 
 
 permissions:
   id-token: write   
-  contents: read
-  actions: read  # Required for workflow_run events
+  contents: read    
 
 jobs:   
   deploy:
+
     runs-on: ubuntu-latest
-    
-    # First, check if we should run
-    if: |
-      github.event_name == 'workflow_run' && 
-      github.event.workflow_run.conclusion == 'success' &&
-      github.event.workflow_run.head_branch == 'deployment_project'
+    if: ${{ github.event.workflow_run.conclusion == 'success' }} 
 
     steps:
-      - name: Debug workflow trigger
-        run: |
-          echo "Triggered by: ${{ github.event_name }}"
-          echo "Workflow conclusion: ${{ github.event.workflow_run.conclusion }}"
-          
+
       - name: Checkout repository
         uses: actions/checkout@v6
         with:
@@ -46,3 +37,7 @@ jobs:
 
       - name: Deploy Lambda function
         run: ./resources/deploy_lambda.sh
+
+
+
+
