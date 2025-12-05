@@ -32,6 +32,8 @@ jobs:
           script: |
             cd /home/ec2-user/dice
             
+            sudo git config --global --add safe.directory /home/ec2-user/dice
+
             git pull origin deployment_project
             
             sudo systemctl restart diceapp
