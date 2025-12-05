@@ -32,7 +32,7 @@ jobs:
           script: |
             cd /home/ec2-user/dice
             
-            sudo git config --global --add safe.directory /home/ec2-user/dice
+            git checkout deployment_project
 
             git pull origin deployment_project
             
