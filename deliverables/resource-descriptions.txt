@@ -1,3 +1,53 @@
+(.venv) vscode ➜ /workspaces/aws-project-25f-ZabAaron (deployment_project) $ aws dynamodb describe-table --table-name dice-rolls 
+{
+    "Table": {
+        "AttributeDefinitions": [
+            {
+                "AttributeName": "roll_id",
+                "AttributeType": "S"
+            },
+            {
+                "AttributeName": "timestamp",
+                "AttributeType": "S"
+            }
+        ],
+        "TableName": "dice-rolls",
+        "KeySchema": [
+            {
+                "AttributeName": "roll_id",
+                "KeyType": "HASH"
+            },
+            {
+                "AttributeName": "timestamp",
+                "KeyType": "RANGE"
+            }
+        ],
+        "TableStatus": "ACTIVE",
+        "CreationDateTime": "2025-12-10T18:13:15.461000+00:00",
+        "ProvisionedThroughput": {
+            "NumberOfDecreasesToday": 0,
+            "ReadCapacityUnits": 0,
+            "WriteCapacityUnits": 0
+        },
+        "TableSizeBytes": 0,
+        "ItemCount": 0,
+        "TableArn": "arn:aws:dynamodb:us-east-1:765467518967:table/dice-rolls",
+        "TableId": "7e97c47c-da88-4203-96ef-9316a596e59a",
+        "BillingModeSummary": {
+            "BillingMode": "PAY_PER_REQUEST",
+            "LastUpdateToPayPerRequestDateTime": "2025-12-10T18:13:15.461000+00:00"
+        },
+        "DeletionProtectionEnabled": false,
+        "WarmThroughput": {
+            "ReadUnitsPerSecond": 12000,
+            "WriteUnitsPerSecond": 4000,
+            "Status": "ACTIVE"
+        }
+    }
+}
+(END)
+
+
 vscode ➜ /workspaces/aws-project-25f-ZabAaron (deployment_project) $ aws ec2 describe-instances --instance-ids i-00181f24df3638636
 {
     "Reservations": [
