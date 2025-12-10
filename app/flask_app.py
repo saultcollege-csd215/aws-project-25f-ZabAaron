@@ -12,7 +12,7 @@ def home():
 
 @app.route('/random')
 def random_number():
-    return jsonify({ "random_number" : core.rand100() })
+    return jsonify({ "random_number" : core.rand100()})
 
 @app.route('/roll/d<int:num_faces>')
 def roll_dice(num_faces):

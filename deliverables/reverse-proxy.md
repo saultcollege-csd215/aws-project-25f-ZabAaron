@@ -1,0 +1,5 @@
+nginx in our case is being used as a reverse proxy, and from what I understand, it basically is placed in between the internet and Gunicorn which runs the flask application  on port 8000 but only listens for 127.0.0.1. In doing this, nginx handles any public web requests on port 80. 
+
+This means that gunicorn (and our flask app) isnt actually public, and makes it only accessible from the ec2 instance itself, therefore nginx acts as protection from various internet threats.
+
+From what I have read on it, it also seems to help with performance in that is able to serve static files very efficiently, meaning it can handle that side of the web app without putting any pressure on the python app itself, so in our case it means gunicorn can focus solely on the flask app. (although im not too sure how much this benefit matters in the case of the very simple app we are running)
