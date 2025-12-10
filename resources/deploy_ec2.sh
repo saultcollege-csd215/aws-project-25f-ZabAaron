@@ -4,6 +4,7 @@
 
 cd /home/ec2-user/dice
 
+
 git pull
 
 sudo systemctl restart diceapp
